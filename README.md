@@ -14,8 +14,6 @@ The goal is to build an end-to-end pipeline that:
 ## 🔍 Dataset
 
 - **Source:** [Kaggle Credit Card Fraud Detection Dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
-- 284,807 transactions, 492 fraud cases
-- Highly imbalanced (~0.17% fraud)
-
+- To run the notebooks, download the dataset and place the `creditcard.csv` file inside the `data/` folder.
 
 

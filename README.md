@@ -1,6 +1,8 @@
 # 💸 Anomaly Expenses
 
-Anomaly Expenses is a machine learning project designed to detect unusual or potentially fraudulent expense transactions using real-world credit card data.
+**Anomaly Expenses** is a machine learning project designed to detect unusual or potentially fraudulent expense transactions using real-world credit card data.
+
+This project was built as part of my effort to deepen my understanding of ML workflows. It demonstrates the full pipeline. from raw data to usable fraud detection model, using common industry tools and clean coding practices.
 
 The goal is to build an end-to-end pipeline that:
 - Loads and cleans transaction data

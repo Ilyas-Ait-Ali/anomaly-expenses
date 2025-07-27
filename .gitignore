@@ -8,8 +8,5 @@ __pycache__/
 # Data
 data/*.csv
 
-# Models
-models/
-
 # Secrets
 .env

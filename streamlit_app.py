@@ -21,38 +21,47 @@ def load_model():
 
 model = load_model()
 
-# === Upload CSV ===
-uploaded_file = st.file_uploader("📤 Upload a CSV file with transaction data", type=["csv"])
+# === Input Selection ===
+st.subheader("📥 Input Data")
+input_choice = st.radio("Choose input source:", ["Upload your CSV", "Use sample_input.csv"])
 
-if uploaded_file:
+df = None
+
+if input_choice == "Upload your CSV":
+    uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
+    if uploaded_file:
+        try:
+            df = pd.read_csv(uploaded_file)
+            st.success("✅ File uploaded successfully!")
+        except Exception as e:
+            st.error(f"❌ Failed to read file: {e}")
+elif input_choice == "Use sample_input.csv":
     try:
-        df = pd.read_csv(uploaded_file)
-        st.success("✅ File uploaded successfully!")
+        df = pd.read_csv("data/sample_input.csv")
+        st.info("✅ Loaded example input data.")
     except Exception as e:
-        st.error(f"❌ Failed to read file: {e}")
-        st.stop()
+        st.error(f"❌ Failed to load sample data: {e}")
 
-    # === Drop 'is_fraud' if it exists to prevent data leakage ===
+# === Run predictions ===
+if df is not None:
+    # Drop 'is_fraud' if present
     if 'is_fraud' in df.columns:
         df = df.drop(columns=['is_fraud'])
 
-    # === Validate Required Columns ===
+    # Validate Required Columns
     REQUIRED_FEATURES = ['Time'] + [f'V{i}' for i in range(1, 29)] + ['Amount']
     missing = [col for col in REQUIRED_FEATURES if col not in df.columns]
 
     if missing:
-        st.error(f"❌ Uploaded file is missing required columns: {missing}")
+        st.error(f"❌ Data is missing required columns: {missing}")
         st.stop()
 
-    # Ensure correct column order
     df = df[REQUIRED_FEATURES]
 
-    # === Predict ===
     try:
         preds = model.predict(df)
         df['predicted_fraud'] = preds
 
-        # === Show results ===
         fraud_df = df[df['predicted_fraud'] == 1]
         legit_df = df[df['predicted_fraud'] == 0]
 

@@ -46,28 +46,26 @@ The pipeline includes:
 
 An interactive frontend allows users to upload a CSV file and detect fraudulent transactions instantly.
 
+
 ### ▶️ Run locally
 
 ```bash
 streamlit run streamlit_app.py
 ```
 
-📤 Upload format
-Must contain exactly these columns:
+### 📤 Upload format
+- Must contain exactly these columns:
 Time, Amount, and V1 to V28
-
-Must not include the label column is_fraud (it will be dropped automatically if present)
+- Must not include the label column is_fraud (it will be dropped automatically if present)
 
 Use this pre-validated **sample_input.csv** to test instantly.
 
 ---
 
-🔍 Output
-Summary of total vs. fraudulent predictions
-
-A downloadable table of transactions flagged as fraud
-
-Graceful error messages for format issues or upload problems
+### 🔍 Output
+- Summary of total vs. fraudulent predictions
+- A downloadable table of transactions flagged as fraud
+- Graceful error messages for format issues or upload problems
 
 ⚠️ Note: This model was trained on anonymized PCA features and should not be used in production without proper retraining and calibration.
 

@@ -52,7 +52,10 @@ Try the model interactively using the [public Streamlit app](https://anomaly-exp
 
 
 
-![Demo Screenshot](assets/demo.png)
+<p align="center">
+  <img src="assets/demo.png" alt="Demo Screenshot" width="700" style="border:2px solid #4CAF50; border-radius:8px;">
+</p>
+
 
 ---
 
